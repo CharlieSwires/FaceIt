@@ -4,8 +4,8 @@ Model - central microservice with unit tests crap name shoul have called it cent
 Competition - records changes pushed from Model if the nickname changes
 Search - Duplicate of Model items allows search by name (minimal implementation)
 
-Assumptions
-===========
+Process
+=======
 Development stage 1 produce a table USERS
 Development stage 2 produce skeleton of the Controllers
 Development stage 3 produce skelaton of Services
@@ -26,6 +26,7 @@ Underneath the target directories you should find the Model.war, Competition.war
 I used tomcat 8.5.15 and put these war files under the webapps directory and started and waited.
 
 GET localhost:8080/Model/users gives what is in the Db
+GET localhost:8080/Model/users/country/country gives users that match country from Db
 POST localhost:8080/Model/users adds users to the Db { "users": [ {...},{...},...]}
 PUT localhost:8080/Model/users/id modifies the user at the given id {...}
 DELETE localhost:8080/Model/users/id deletes the user at the id
@@ -43,6 +44,19 @@ DELETE localhost:8080/Search/users/id deletes the user at the id
 Compiling the stuff
 ===================
 mvn package produces the war in target
-Note empty the Db and deploy Search and Competition before running the mvn package for Model
+Note empty the Db and deploy Search and Competition before running the mvn package for Model (unless you turn off the tests)
 this is a bit naff I should have used a different Db for the tests but I haven't so there it is it does leave clean
 
+Decisions
+=========
+Model only link to Db Competition and Search just use RAM ArrayList.
+Search is initialised when POST Model/users performed.
+Competition not initialised users put in there when PUT Model/users/id with a change in nickname.
+Simple search performed only country.
+Search only performs name search.
+Limited error handling and testing due to time taken so far. Some Syster.out.println's left in for debugging should be taken out.
+Logging not used due to lack of progress yesterday had to learn how to deploy spring boot in tomcat completed today and it was easy.
+Testing should be more extensive checking for correct error handling, although it takes long enough.
+Some integration testing done in Model chose to use postman for integration testing of the 3 microservices.
+Would have used the observer pattern for a general solution with multiple Search and Competition microservices.
+Which means there would have needed to be register and unregister POST calls.
