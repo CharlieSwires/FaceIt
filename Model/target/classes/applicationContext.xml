@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <bean id="main.java.model.DbHelper"
+        class="main.java.model.DbHelper" />
+    <bean id="ModelService"
+        class="main.java.model.ModelService" />
+    <bean id="ModelController"
+        class="main.java.model.ModelController" />
+    <bean id="User"
+        class="main.java.model.User" />
+    <bean id="Users"
+        class="main.java.model.Users" />
+    <bean id="Utility"
+        class="main.java.model.Utility" />
+    <bean id="UsersDb"
+        class="main.java.model.UserDb" />
+    <bean id="SpringBootRestApplication"
+        class="main.java.model.SpringBootRestApplication" />
+ 
+</beans>
