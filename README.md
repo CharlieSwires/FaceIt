@@ -1,6 +1,6 @@
 README
 ======
-Model - central microservice with unit tests crap name shoul have called it central!
+Model - central microservice with unit tests crap name should have called it central!
 Competition - records changes pushed from Model if the nickname changes
 Search - Duplicate of Model items allows search by name (minimal implementation)
 
@@ -60,3 +60,4 @@ Testing should be more extensive checking for correct error handling, although i
 Some integration testing done in Model chose to use postman for integration testing of the 3 microservices.
 Would have used the observer pattern for a general solution with multiple Search and Competition microservices.
 Which means there would have needed to be register and unregister POST calls.
+Note tests could be run in parallel if there were a seperate Db for each test and tomcat instance.
