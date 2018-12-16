@@ -37,7 +37,6 @@ public class ModelService {
 		
 		if (db.createUsers(users)) {
 			Client client =ClientBuilder.newClient(new ClientConfig().register(GensonJsonConverter.class));
-			users = db.getUsers();
 			WebTarget webTarget = client.target("http://localhost:8080/Search").path("users");
 	
 			Invocation.Builder invocationBuilder =  webTarget.request(MediaType.APPLICATION_JSON);

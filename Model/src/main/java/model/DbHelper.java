@@ -5,6 +5,9 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,8 +23,6 @@ public class DbHelper {
 	public DbHelper() {
 		this.sessionFactory = new Configuration().configure().buildSessionFactory();
 	}
-
-
 
 	public BigInteger delete(BigInteger id) {
 		Session session = this.sessionFactory.openSession();
@@ -112,9 +113,9 @@ public class DbHelper {
 				UserDb udb = new UserDb();
 				Utility.copyUsertoUserDb(user, udb);
 				System.out.println(udb.toString());
-
 				session.save(udb);
-				System.out.println("******************Saved:"+udb.getName());
+				Utility.copyUserDbtoUser(udb, user);
+				System.out.println("******************Saved user:"+user.toString());
 			}
 			tx.commit();
 			session.close();

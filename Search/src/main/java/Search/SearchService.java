@@ -67,5 +67,14 @@ public class SearchService {
 		result.setUsers(users);
 		return result;
 	}
+	public boolean init() {
+		Client client =ClientBuilder.newClient(new ClientConfig().register(GensonJsonConverter.class));
+		WebTarget webTarget = client.target("http://localhost:8080/Model").path("users");
+
+		Invocation.Builder invocationBuilder =  webTarget.request(MediaType.APPLICATION_JSON);
+		Users response = invocationBuilder.get(Users.class);
+		return createUsers(response);
+		
+	}
 
 }

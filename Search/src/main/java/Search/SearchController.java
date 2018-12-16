@@ -22,6 +22,11 @@ public class SearchController {
 		Users ob = searchService.getUsers();
 		return new ResponseEntity<Users>(ob, HttpStatus.OK);
 	}
+	@GetMapping("/init")
+	public ResponseEntity<Boolean> init() {
+		Boolean ob = searchService.init();
+		return new ResponseEntity<Boolean>(ob, HttpStatus.OK);
+	}
 
 	//Fetches user by id
 	@GetMapping("/users/{name}")
