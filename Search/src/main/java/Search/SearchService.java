@@ -4,7 +4,7 @@ package Search;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -25,54 +25,49 @@ import com.owlike.genson.ext.jaxrs.GensonJsonConverter;
 public class SearchService {
 
 	@SuppressWarnings("unchecked")
-	private List<User> users = (List<User>) new HashMap<Integer,User>();
+	private HashMap<Integer,User> users =new HashMap<Integer,User>();
 	
 
 	public Users getUsers() {
 		Users users = new Users();
-		users.setUsers(this.users);
+		List<User> ul = new ArrayList<>();
+		ul.addAll(this.users.values());
+		users.setUsers(ul);
 		return users;
 	}
 	public boolean createUsers(Users users) {
 		for (User user : users.getUsers()) {
-			this.users.add(user.getId(),user);
+			this.users.put(user.getId(),user);
 		}
 		return true;
 	}
 
 	public User updateUserById(User user, Integer id) {
 		boolean empty = true;
-		for (int i = 0; i < this.users.size();i++) {
-			User u = this.users.get(i);
-			if (u.getId()==user.getId()) {
-				this.users.remove(i);
-				this.users.add(user);
+		for (User u : this.users.values()) {
+			if (u.getId()==id) {
+				user.setId(id);
+				this.users.put(id,user);
 				empty = false;
 				break;
 			}
 		}
 		if (empty) {
-			this.users.add(user);
+			user.setId(id);
+			this.users.put(id,user);
 		}
 		return user;
 
 	}
 
 	public Integer deleteById(Integer id) {
-		for (int i = 0; i < this.users.size();i++) {
-			User u = this.users.get(i);
-			if (u.getId()==id) {
-				this.users.remove(i);
-				break;
-			}
-		}
+		this.users.remove(id);
 		return id;
 	}
 	public Users getUsersByName(String name) {
 		List<User> users = new ArrayList<User>();
-		for (int i = 0; i < this.users.size();i++) {
-			User u = this.users.get(i);
-			if (u.getName().equals(name)) {
+		for (User u : this.users.values()) {
+			if (u != null && u.getName().equals(name)) {
 				users.add(u);
 			}
 		}
