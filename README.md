@@ -61,3 +61,6 @@ Some integration testing done in Model chose to use postman for integration test
 Would have used the observer pattern for a general solution with multiple Search and Competition microservices.
 Which means there would have needed to be register and unregister POST calls.
 Note tests could be run in parallel if there were a seperate Db for each test and tomcat instance.
+I'm not entirely happy with Model's POST command it works but dumps the entire db to Search to keep them in sync
+perhaps Search should get on startup however, this would mean Search would always have to start after Model at
+the moment they don't do anything on startup.
