@@ -42,21 +42,13 @@ public class SearchService {
 		return true;
 	}
 
-	public User updateUserById(User user, Integer id) {
-		boolean empty = true;
-		for (User u : this.users.values()) {
-			if (u.getId()==id) {
-				user.setId(id);
-				this.users.put(id,user);
-				empty = false;
-				break;
-			}
-		}
-		if (empty) {
+	public User updateUserById(User user, Integer id) {	
+		if (this.users.containsKey(id)) {
 			user.setId(id);
 			this.users.put(id,user);
+			return user;
 		}
-		return user;
+		return null;
 
 	}
 
