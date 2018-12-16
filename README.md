@@ -64,3 +64,4 @@ Note tests could be run in parallel if there were a seperate Db for each test an
 I'm not entirely happy with Model's POST command it works but dumps the entire db to Search to keep them in sync
 perhaps Search should get on startup however, this would mean Search would always have to start after Model at
 the moment they don't do anything on startup.
+This is now fixed if Search has just been started along with the rest GET Search/init can be called.
