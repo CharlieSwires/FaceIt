@@ -2,6 +2,7 @@ package Search;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -23,7 +24,8 @@ import com.owlike.genson.ext.jaxrs.GensonJsonConverter;
 @Service
 public class SearchService {
 
-	private List<User> users = new ArrayList<User>();
+	@SuppressWarnings("unchecked")
+	private List<User> users = (List<User>) new HashMap<Integer,User>();
 	
 
 	public Users getUsers() {
@@ -33,7 +35,7 @@ public class SearchService {
 	}
 	public boolean createUsers(Users users) {
 		for (User user : users.getUsers()) {
-			this.users.add(user);
+			this.users.add(user.getId(),user);
 		}
 		return true;
 	}
