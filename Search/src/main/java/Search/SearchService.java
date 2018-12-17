@@ -73,6 +73,7 @@ public class SearchService {
 
 		Invocation.Builder invocationBuilder =  webTarget.request(MediaType.APPLICATION_JSON);
 		Users response = invocationBuilder.get(Users.class);
+		this.users.clear();
 		return createUsers(response);
 		
 	}
