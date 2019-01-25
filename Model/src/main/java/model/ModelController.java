@@ -37,7 +37,7 @@ public class ModelController {
 	}
 	//Fetches user by country
 	@GetMapping("/users/country/{country}")
-	public ResponseEntity<Users> getUserById(@PathVariable("country") String country) {
+	public ResponseEntity<Users> getUserByCountry(@PathVariable("country") String country) {
 		System.out.println("Get Model/users/country/country");
 		Users ob = modelService.getUsersByCountry(country);
 		return new ResponseEntity<Users>(ob, HttpStatus.OK);
